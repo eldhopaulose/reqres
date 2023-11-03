@@ -6,6 +6,7 @@ class UserTokenError {
 
   UserTokenError.fromJson(Map<String, dynamic> json) {
     token = json['token'];
+    error = json['error'];
   }
 
   Map<String, dynamic> toJson() {

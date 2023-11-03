@@ -67,6 +67,8 @@ class DioClient {
             );
         }
       }
+
+      return response;
     }
   }
 

@@ -66,21 +66,25 @@ class _MyLoginPageState extends State<MyLoginPage> {
                 height: 20,
               ),
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async{
                   final AuthRepo repo = AuthRepo();
-                  final response = repo.loginRequest(
+                  final response = await repo.loginRequest(
                     UserModel(
                       email: emailController.text,
                       password: passwordController.text,
                     ),
                   );
-                  print("bhiuhiuhiufffffff" + response.toString());
-                  if (response != null) {
+
+                  if (response != null && response?.error == null) {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => const HomePage(),
                       ),
+                    );
+                  }else{
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text(response!.error.toString(),),)
                     );
                   }
                 },
